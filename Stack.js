@@ -1,28 +1,37 @@
 
 function Stack() {
-	let head = null;
+	let startNode = null;
 
 	function push(value) {
-	  const newNode = Node(value, null);
-	  if (!head) {
-		head = newNode;
-	  } else {
-		newNode.setNextNode(head);
-		head = newNode;
-	  }
+		
+		const node = { value, next: null };
+		
+		if (startNode === null) {
+			startNode = node;
+		} else {
+			
+			node.next = startNode;
+			
+			startNode = node;
+		}
 	}
-  
+
 	function pop() {
-	  if (!head) {
-		return null;
-	  }
-	  let value = head.getValue();
-	  head = head.getNextNode();
-	  return value;
+		
+		if (startNode === null) {
+			return undefined;
+		} else {
+			
+			const value = startNode.value;
+			
+			startNode = startNode.next;
+			
+			return value;
+		}
 	}
-  
+
 	return {
-	  push,
-	  pop,
-	};
-  }
+		push,
+		pop
+	}
+}
